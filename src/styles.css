@@ -1,0 +1,182 @@
+/* ── Reset & Base ───────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:         #0f1117;
+  --bg-card:    #1a1d27;
+  --bg-card2:   #21253a;
+  --border:     rgba(255,255,255,0.07);
+  --green:      #1D9E75;
+  --green-dim:  rgba(29,158,117,0.15);
+  --gray:       #888780;
+  --gray-bar:   #555560;
+  --text:       #e8e8e8;
+  --text-dim:   #888;
+  --radius:     10px;
+  --font:       'Segoe UI', Arial, sans-serif;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  min-height: 100vh;
+  padding-bottom: 2rem;
+}
+
+/* ── Header ─────────────────────────────────────────────── */
+.app-header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 1.25rem 2rem 1rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 1.5rem;
+}
+.app-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--green);
+  letter-spacing: 0.01em;
+}
+.app-subtitle {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
+
+/* ── Layout ─────────────────────────────────────────────── */
+.container {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* ── Metric Cards ────────────────────────────────────────── */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+.metric-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem;
+  text-align: center;
+  transition: border-color 0.2s;
+}
+.metric-card.highlight {
+  border-color: rgba(29,158,117,0.3);
+  background: var(--green-dim);
+}
+.metric-label {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.metric-value {
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+.metric-value.green { color: var(--green); }
+
+/* ── Controls ────────────────────────────────────────────── */
+.controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.control-group label {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
+.control-group label strong {
+  color: var(--text);
+}
+input[type="range"] {
+  width: 100%;
+  accent-color: var(--green);
+  cursor: pointer;
+  height: 4px;
+}
+
+/* ── Legend ──────────────────────────────────────────────── */
+.legend {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 0.78rem;
+  color: var(--text-dim);
+}
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  display: inline-block;
+}
+.legend-dot.gray  { background: var(--gray-bar); }
+.legend-dot.green { background: var(--green); }
+
+/* ── Chart ───────────────────────────────────────────────── */
+.chart-wrapper {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  height: 300px;
+  position: relative;
+}
+
+/* ── NLP Panel ───────────────────────────────────────────── */
+.nlp-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.nlp-header {
+  background: var(--bg-card2);
+  padding: 0.65rem 1.25rem;
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-bottom: 1px solid var(--border);
+}
+.nlp-tasks {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+.nlp-task {
+  padding: 0.85rem 1.25rem;
+  border-right: 1px solid var(--border);
+}
+.nlp-task:last-child { border-right: none; }
+.nlp-task-title {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  margin-bottom: 4px;
+}
+.nlp-task-desc {
+  font-size: 0.82rem;
+  color: var(--text);
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+  .controls     { grid-template-columns: 1fr; }
+  .nlp-tasks    { grid-template-columns: 1fr; }
+  .nlp-task     { border-right: none; border-bottom: 1px solid var(--border); }
+}
