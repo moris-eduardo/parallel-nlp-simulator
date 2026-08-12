@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arquitectura Paralela — NLP</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+  <link rel="stylesheet" href="src/styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <span class="app-title">Arquitectura en Paralelo — Procesamiento NLP</span>
+    <span class="app-subtitle">Comparativa de rendimiento en tiempo real</span>
+  </header>
+
+  <main class="container">
+    <!-- Tarjetas de métricas -->
+    <section class="metrics-grid" aria-label="Métricas de rendimiento">
+      <div class="metric-card">
+        <div class="metric-label">Documentos</div>
+        <div class="metric-value" id="stat-docs">500</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Workers</div>
+        <div class="metric-value" id="stat-workers">4</div>
+      </div>
+      <div class="metric-card highlight">
+        <div class="metric-label">Speedup</div>
+        <div class="metric-value green" id="stat-speedup">—</div>
+      </div>
+      <div class="metric-card highlight">
+        <div class="metric-label">Ahorro de tiempo</div>
+        <div class="metric-value green" id="stat-saving">—</div>
+      </div>
+    </section>
+
+    <!-- Controles -->
+    <section class="controls" aria-label="Parámetros de simulación">
+      <div class="control-group">
+        <label for="ctrl-docs">
+          Documentos a procesar: <strong id="lbl-docs">500</strong>
+        </label>
+        <input type="range" id="ctrl-docs" min="100" max="2000" step="100" value="500" aria-label="Número de documentos" />
+      </div>
+      <div class="control-group">
+        <label for="ctrl-workers">
+          Workers paralelos: <strong id="lbl-workers">4</strong>
+        </label>
+        <input type="range" id="ctrl-workers" min="1" max="16" step="1" value="4" aria-label="Número de workers" />
+      </div>
+    </section>
+
+    <!-- Leyenda -->
+    <div class="legend">
+      <span class="legend-dot gray"></span><span>Monohilo</span>
+      <span class="legend-dot green"></span><span>Paralelo</span>
+    </div>
+
+    <!-- Gráfica -->
+    <section class="chart-wrapper" aria-label="Gráfica comparativa de tiempo de ejecución">
+      <canvas id="mainChart" role="img" aria-label="Barras comparando tiempo monohilo vs paralelo"></canvas>
+    </section>
+
+    <!-- Tareas NLP -->
+    <section class="nlp-panel" aria-label="Pipeline NLP por worker">
+      <div class="nlp-header">Tareas NLP simuladas por documento</div>
+      <div class="nlp-tasks">
+        <div class="nlp-task">
+          <div class="nlp-task-title">Tokenización</div>
+          <div class="nlp-task-desc">Divide texto en tokens</div>
+        </div>
+        <div class="nlp-task">
+          <div class="nlp-task-title">Conteo de frecuencias</div>
+          <div class="nlp-task-desc">Bag of Words por doc</div>
+        </div>
+        <div class="nlp-task">
+          <div class="nlp-task-title">Análisis de sentimiento</div>
+          <div class="nlp-task-desc">Score positivo / negativo</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="src/simulation.js"></script>
+  <script src="src/chart.js"></script>
+  <script src="src/app.js"></script>
+</body>
+</html>
